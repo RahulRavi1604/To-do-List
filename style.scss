@@ -1,0 +1,338 @@
+@import "helper-classes.scss";
+$primary-black:lighten(black,45%);
+$topnav-blue:#1479d3e0;
+$primary-blue: #6b93ef;
+$search-background:#c7ddf5;
+$header-color:#fff;;
+$sidebar-background:#eee;
+$heading-padding:15px;
+
+.container {
+  height: 97vh;
+}
+body {
+  color:$primary-black;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+button {
+  outline:none;
+  border:none;
+  background-color: #fff;
+  color:$primary-black;
+  cursor: pointer;
+}
+.m-b-40 {
+  margin-bottom: 40px; 
+}
+p {
+  margin: auto;
+}
+@mixin nav-ul {
+  list-style-type: none;
+}
+
+nav.topnav {
+  background-color: $topnav-blue;
+  font-size: 20px;
+   ul {
+     @include nav-ul();
+     text-align: center;
+   }
+   li.topnav-left {
+    display: block;
+    float: left;
+   }
+   a:link, a:visited {
+     color:$primary-black;
+     text-decoration:none;
+     cursor: pointer;
+  }
+   li.topnav-left p {
+    display: inline;
+    color:$header-color;
+   }
+   li.topnav-center {
+    display: inline-block;
+    border-radius: 5px;
+    height:38px;
+    background-color: $search-background;
+   }
+   button.search-icon i {
+     font-size:19px;
+   }
+   button.search-icon {
+     border: none;
+     height: 36px;
+     width: 40px;
+     color: $primary-blue;
+     background-color: transparent;
+   }
+   .search-input {
+     border:none;
+     height: 36px;
+     background-color: transparent;
+     width: 82%;
+     outline:none;
+     font-size:17px;
+     color:$primary-blue;
+     &::placeholder {
+       color:$primary-blue;
+       font-size:17px;
+     }
+   }
+}
+.page-content {
+  height: 94%;
+  display: inline-flex;
+  overflow: hidden;
+  width: 100%;
+}
+nav.sidebar {
+  width:20%;
+  height: 100%;
+  font-size:18.5px;
+  ul {
+    @include nav-ul();
+    height: 94%;
+    background-color:$sidebar-background;
+    a:link, a:visited {
+      color:$primary-black;
+      text-decoration:none;
+      cursor: pointer;
+    }
+    li {
+      display: flex;
+      width:100%;
+      height:40px;
+      i {
+        width: 22px;
+      }
+    }
+    li.active {
+      background:#c5c5c578;
+      font-weight: bold;
+    }
+    .sidenav-blue {
+      color:#7f9bef;
+    }
+  }
+}
+.todo {
+  width: 80%;
+  transition: width 0.40s;
+   ul.list {
+     @include nav-ul();
+   }
+   .heading {
+    i {
+      font-size:20px;
+    }
+     width: 100%;
+     .heading-left{
+      display: inline-block;
+      padding: $heading-padding;
+      p {
+        display: inline-block;
+        font-size: 28px;
+        color:$primary-blue;
+        font-weight: bold;
+      }
+     }
+     .heading-right {
+      padding: $heading-padding;
+      color:$primary-blue;
+      i {
+        display: inline-block;
+      }
+      p {
+        font-size: 18.5px;
+        display: inline;
+        font-weight: bold;
+      }
+      float: right;
+      width: 10%;
+      text-align: right;
+     }
+   }
+   ul.list {
+     height:91%;
+     @include nav-ul;
+     width:100%;
+     padding-left:0px;
+     li.task {
+       padding:20px 0px;
+       margin:0px 2.5%;
+       border-bottom: 1px solid #6e6e6e52;
+       position: relative;
+       button {
+         position: absolute;
+         top:35%;
+         font-size:20px;
+       }
+       div {
+         display: inline-block;
+         width: 90%;
+       }
+       div {
+        margin-left: 45px;
+       }
+       .fav {
+         float:right;
+         margin-right:10px;
+       }     
+       input.add-input {
+         border:none;
+         outline:none;
+         width:100%;
+         height:100%;
+         margin-left:45px;
+         color:#737373;
+         &:placeholder {
+           font-size: inherit;
+           color:#737373;
+         }
+       }
+     }
+     li:not(:last-child) {
+       cursor: pointer;
+     }
+     li.active {
+       background-color: #c7ddf54a;
+       button {
+        background-color: transparent;
+       }
+      }  
+     a:link, a:visited {
+      color:$primary-black;
+      text-decoration:none;
+      cursor: pointer;
+     }
+  }
+}
+.task-description {
+  width:0%;
+  overflow: hidden;
+  background-color: #ededed;
+  transform: translateX(110%);
+  transition: transform 0.40s;
+  a:link, a:visited {
+    color:$primary-black;
+    text-decoration:none;
+    cursor: pointer;
+ }
+ .card {
+    font-size: 18.5px;
+    border: 1px solid #eee;
+    margin: 5px 10px 15px 10px;
+    padding:5px;
+    background-color: #fff;
+    i {
+      font-size:18px;
+    }
+  }
+  .task-details {
+    margin-top:10px;
+    display: flex;
+    .fav , .circle {
+      display: inline-block;
+      width:10%;
+      text-align: center;
+      button {
+        padding:10px;
+      }
+    }
+    .fav {
+      float: right;
+    }
+.task-text {
+      display: inline-block;
+      width:17rem;
+      font-weight: bold;
+      margin-left: 5px;
+      font-size:21px;
+      max-height: 255px;
+      overflow: hidden;
+      -webkit-line-clamp: 9;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-wrap:break-word
+  }
+  }
+  .add-to-day, {
+    button {
+      font-size: 16px;
+      width: 100%;
+      height:45px;
+      text-align: left;
+      display: inline-flex;
+    }
+  }
+  .settings {
+      button {
+        font-size: 16px;
+        width: 100%;
+        text-align: left;
+        height:45px;
+        display: inline-flex;
+    }
+    button:not(:first-child) {
+      padding-top:10px;
+     }
+    button:not(:last-child) {
+      padding-bottom:10px;
+      border-bottom: 1px solid #6e6e6e52;
+     }
+  }
+  textarea.note-card {
+    font-size: 16.5px;
+    border: 1px solid #eee;
+    margin: 10px;
+    padding:13px;
+    color:$primary-black;
+    background-color: #fff;
+    outline:none;
+    resize:none;
+    &::placeholder {
+     font-family: 'Source Sans Pro', sans-serif;
+     font-size: 16.5px
+    }
+  }
+  .bottom-settings {
+    position:absolute;
+    bottom: 0;
+    right: 0;
+    display:inline-flex;
+    height:50px;
+    width:100%;
+    border-top: 1px solid #6e6e6e52;
+    padding-top:10px;
+    background-color: transparent;
+    button.toggle-slider {
+      width:10%;
+      font-size: 18px;
+      background-color: transparent;
+      i {
+      color:$primary-black;
+      }
+    }
+    button.delete-task {
+      width:10%;
+      font-size: 18px;
+      background-color: transparent;
+      i {
+      color:$primary-black;
+      }
+    }
+  }
+}
+.list-open {
+  width:55%;
+  transition: width 0.40s;
+}
+.desc-open {
+  width:25%;
+  transform: translateX(0%);
+  transition: width 0.40s;
+   display: inline;
+}

@@ -1,0 +1,40 @@
+$spaceamounts: (0,5,10,15,20,25);
+$sides: (top, bottom, left, right);
+@each $space in $spaceamounts {
+  @each $side in $sides {
+    .m-#{str-slice($side, 0, 1)}-#{$space} {
+      margin-#{$side}: #{$space}px;
+    }
+  
+    .p-#{str-slice($side, 0, 1)}-#{$space} {
+      padding-#{$side}: #{$space}px;
+    }
+  }
+}
+@each $prop, $abbrev in (margin: m, padding: p) {
+  @each $space in $spaceamounts {
+    $length-x: #{$space}px;
+    $length-y: #{$space}px;
+
+    .#{$abbrev}-x-#{$space} {
+      #{$prop}-right:#{$space}px;
+      #{$prop}-left:#{$space}px;
+    }
+    .#{$abbrev}-y-#{$space} {
+      #{$prop}-top:#{$space}px;
+      #{$prop}-bottom:#{$space}px;
+    }
+  }
+}
+.m-x-auto {
+  margin-right: auto ;
+  margin-left:  auto ;
+}
+.m-y-auto {
+  margin-top: auto ;
+  margin-bottom:  auto ;
+}
+.m-auto {
+  margin:auto;
+}
+
