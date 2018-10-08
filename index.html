@@ -29,9 +29,7 @@
       <div class="page-content">
         <nav class="sidebar">
           <ul class="m-y-auto p-l-0 p-y-20">
-            <a href="#">
-              <li><i class="fa fa-bars m-t-10 m-l-20 m-y-auto"></i></li>
-            </a>
+              <li><a href="#"><i class="fa fa-bars m-t-10 m-l-20 m-y-auto toggle-collapse"></i></a></li>
             <a href="#">
               <li>
                 <i class="fa fa-sun-o m-y-auto m-l-20"></i>
@@ -64,7 +62,7 @@
               <li class="m-t-20 active">
                 <i class="fa fa-list-ul sidenav-blue m-y-auto  m-l-20"></i>
                 <p class="m-l-20 sidenav-blue">My List</p>
-                <div class="m-y-auto m-r-10 sidenav-blue">2</div>
+                <div class="m-y-auto m-r-10 sidenav-blue">0</div>
               </li>
             </a>
             <a href="#">
@@ -89,42 +87,22 @@
           </div>
           <ul class="list m-y-auto">
             <li  class="task">
-              <button><i class="fa fa-circle-thin"></i></button>
-                <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, quod.</div>
-              <button><i class="fa fa-star-o fav"></i></button>
-            </li>
-            <li  class="task">
-              <button><i class="fa fa-circle-thin"></i></button>
-             <div> <p></p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, tempore!</div>
-              <button><i class="fa fa-star-o fav"></i></button>
-            </li>
-            <li  class="task">
-              <button><i class="fa fa-circle-thin"></i></button>
-              <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, maiores.</div>
-              <button><i class="fa fa-star-o fav"></i></button>
-            </li  class="task">
-            <li class="task">
-              <button><i class="fa fa-circle-thin"></i></button>
-             <div> Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, minus!</div>
-              <button><i class="fa fa-star-o fav"></i></button>
+              <button><i class="fa fa-circle-thin status"></i></button>
+                <div class="todo-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, quod.</div>
+              <button><i class="fa fa-star-o important"></i></button>
             </li>
             <li  class="task">
               <button><i class="fa fa-plus plus-icon"></i></button>
-              <input class="add-input m-y-auto" placeholder="Add a task"/>
+              <input maxlength="255" class="add-input m-y-auto" placeholder="Add a task"/>
+              <button class="add-button">Add</button>
             </li>
           </ul>
         </div>
         <div class="task-description">
           <div class="card task-details">
-            <div class="circle">
-            <button><i class="fa fa-circle-thin"></i></button>
-            </div>
-             <a href="#">
-                <div class="task-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus autem quaerat adipisci nisi? Quos amet aspernatur, omnis labore distinctio sed!</div>
-              </a>
-              <div class="fav">
-          <button><i class="fa fa-star-o"></i></button>
-          </div>
+            <button><i class="fa fa-circle-thin task-status"></i></button>
+              <div class="task-text"></div>
+          <button><i class="fa fa-star-o task-important"></i></button>
           </div>
           <div class="card add-to-day">
             <button>
@@ -146,7 +124,7 @@
               <p class="m-l-20">Repeat</p>
             </button>
           </div>
-            <textarea class="note-card" cols="32" rows="4" placeholder="Add a note"></textarea>
+            <textarea class="note-card" placeholder="Add a note"></textarea>
           <div class="bottom-settings">
             <button class="toggle-slider"><i class="fa fa-arrow-right"></i>
             </button>

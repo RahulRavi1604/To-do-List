@@ -87,8 +87,9 @@ nav.topnav {
   overflow: hidden;
   width: 100%;
 }
-nav.sidebar {
-  width:20%;
+.sidebar {
+  width:22%;
+  transition: width 0.4s;
   height: 100%;
   font-size:18.5px;
   ul {
@@ -155,13 +156,16 @@ nav.sidebar {
      }
    }
    ul.list {
+    overflow: auto;
      height:91%;
      @include nav-ul;
      width:100%;
      padding-left:0px;
      li.task {
+       transition: height 3s;
        padding:20px 0px;
        margin:0px 2.5%;
+       word-break: break-all;
        border-bottom: 1px solid #6e6e6e52;
        position: relative;
        button {
@@ -183,7 +187,7 @@ nav.sidebar {
        input.add-input {
          border:none;
          outline:none;
-         width:100%;
+         width:80%;
          height:100%;
          margin-left:45px;
          color:#737373;
@@ -192,6 +196,19 @@ nav.sidebar {
            color:#737373;
          }
        }
+       .add-button {
+        position: static;
+        margin: 0px 30px;
+        float: right;
+        font-size: 17px;
+        color:$primary-blue;
+        display: none;
+       }
+     }
+     li:last-child {
+       position: sticky;
+       bottom:0;
+       background: white;
      }
      li:not(:last-child) {
        cursor: pointer;
@@ -214,7 +231,7 @@ nav.sidebar {
   overflow: hidden;
   background-color: #ededed;
   transform: translateX(110%);
-  transition: transform 0.40s;
+  transition: width 0.40s;
   a:link, a:visited {
     color:$primary-black;
     text-decoration:none;
@@ -233,27 +250,27 @@ nav.sidebar {
   .task-details {
     margin-top:10px;
     display: flex;
-    .fav , .circle {
+    button {
+      padding:10px 2px;
       display: inline-block;
       width:10%;
       text-align: center;
-      button {
-        padding:10px;
-      }
+      height:max-content;
     }
     .fav {
+      display: inline-block;
+      width:10%;
+      text-align: center;
       float: right;
     }
+
 .task-text {
       display: inline-block;
-      width:17rem;
       font-weight: bold;
+      min-width: 80%;
       margin-left: 5px;
       font-size:21px;
       max-height: 255px;
-      overflow: hidden;
-      -webkit-line-clamp: 9;
-      -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
       word-wrap:break-word
@@ -288,6 +305,8 @@ nav.sidebar {
     font-size: 16.5px;
     border: 1px solid #eee;
     margin: 10px;
+    width:85%;
+    height: 10%;
     padding:13px;
     color:$primary-black;
     background-color: #fff;
@@ -331,8 +350,18 @@ nav.sidebar {
   transition: width 0.40s;
 }
 .desc-open {
-  width:25%;
+  width:30%;
   transform: translateX(0%);
   transition: width 0.40s;
    display: inline;
+}
+.sidebar-collapse {
+  width:4%;
+  ul a li p, ul a li div {
+    display: none;
+    white-space: nowrap;
+  }
+}
+.todo-full-width {
+  width:100%;
 }

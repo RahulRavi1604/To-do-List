@@ -433,25 +433,27 @@ nav.topnav .search-input::placeholder {
   width: 100%;
 }
 
-nav.sidebar {
-  width: 20%;
+.sidebar {
+  width: 22%;
+  -webkit-transition: width 0.4s;
+  transition: width 0.4s;
   height: 100%;
   font-size: 18.5px;
 }
 
-nav.sidebar ul {
+.sidebar ul {
   list-style-type: none;
   height: 94%;
   background-color: #eee;
 }
 
-nav.sidebar ul a:link, nav.sidebar ul a:visited {
+.sidebar ul a:link, .sidebar ul a:visited {
   color: #737373;
   text-decoration: none;
   cursor: pointer;
 }
 
-nav.sidebar ul li {
+.sidebar ul li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -459,16 +461,16 @@ nav.sidebar ul li {
   height: 40px;
 }
 
-nav.sidebar ul li i {
+.sidebar ul li i {
   width: 22px;
 }
 
-nav.sidebar ul li.active {
+.sidebar ul li.active {
   background: #c5c5c578;
   font-weight: bold;
 }
 
-nav.sidebar ul .sidenav-blue {
+.sidebar ul .sidenav-blue {
   color: #7f9bef;
 }
 
@@ -521,6 +523,7 @@ nav.sidebar ul .sidenav-blue {
 }
 
 .todo ul.list {
+  overflow: auto;
   height: 91%;
   list-style-type: none;
   width: 100%;
@@ -528,8 +531,11 @@ nav.sidebar ul .sidenav-blue {
 }
 
 .todo ul.list li.task {
+  -webkit-transition: height 3s;
+  transition: height 3s;
   padding: 20px 0px;
   margin: 0px 2.5%;
+  word-break: break-all;
   border-bottom: 1px solid #6e6e6e52;
   position: relative;
 }
@@ -557,7 +563,7 @@ nav.sidebar ul .sidenav-blue {
 .todo ul.list li.task input.add-input {
   border: none;
   outline: none;
-  width: 100%;
+  width: 80%;
   height: 100%;
   margin-left: 45px;
   color: #737373;
@@ -566,6 +572,22 @@ nav.sidebar ul .sidenav-blue {
 .todo ul.list li.task input.add-input:placeholder {
   font-size: inherit;
   color: #737373;
+}
+
+.todo ul.list li.task .add-button {
+  position: static;
+  margin: 0px 30px;
+  float: right;
+  font-size: 17px;
+  color: #6b93ef;
+  display: none;
+}
+
+.todo ul.list li:last-child {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  background: white;
 }
 
 .todo ul.list li:not(:last-child) {
@@ -592,10 +614,8 @@ nav.sidebar ul .sidenav-blue {
   background-color: #ededed;
   -webkit-transform: translateX(110%);
           transform: translateX(110%);
-  -webkit-transition: -webkit-transform 0.40s;
-  transition: -webkit-transform 0.40s;
-  transition: transform 0.40s;
-  transition: transform 0.40s, -webkit-transform 0.40s;
+  -webkit-transition: width 0.40s;
+  transition: width 0.40s;
 }
 
 .task-description a:link, .task-description a:visited {
@@ -623,30 +643,30 @@ nav.sidebar ul .sidenav-blue {
   display: flex;
 }
 
-.task-description .task-details .fav, .task-description .task-details .circle {
+.task-description .task-details button {
+  padding: 10px 2px;
   display: inline-block;
   width: 10%;
   text-align: center;
-}
-
-.task-description .task-details .fav button, .task-description .task-details .circle button {
-  padding: 10px;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
 }
 
 .task-description .task-details .fav {
+  display: inline-block;
+  width: 10%;
+  text-align: center;
   float: right;
 }
 
 .task-description .task-details .task-text {
   display: inline-block;
-  width: 17rem;
   font-weight: bold;
+  min-width: 80%;
   margin-left: 5px;
   font-size: 21px;
   max-height: 255px;
-  overflow: hidden;
-  -webkit-line-clamp: 9;
-  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   word-wrap: break-word;
@@ -685,6 +705,8 @@ nav.sidebar ul .sidenav-blue {
   font-size: 16.5px;
   border: 1px solid #eee;
   margin: 10px;
+  width: 85%;
+  height: 10%;
   padding: 13px;
   color: #737373;
   background-color: #fff;
@@ -753,11 +775,24 @@ nav.sidebar ul .sidenav-blue {
 }
 
 .desc-open {
-  width: 25%;
+  width: 30%;
   -webkit-transform: translateX(0%);
           transform: translateX(0%);
   -webkit-transition: width 0.40s;
   transition: width 0.40s;
   display: inline;
+}
+
+.sidebar-collapse {
+  width: 4%;
+}
+
+.sidebar-collapse ul a li p, .sidebar-collapse ul a li div {
+  display: none;
+  white-space: nowrap;
+}
+
+.todo-full-width {
+  width: 100%;
 }
 /*# sourceMappingURL=style.css.map */
