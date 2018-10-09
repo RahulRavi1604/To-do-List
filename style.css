@@ -364,7 +364,8 @@ nav.topnav li.topnav-left {
   float: left;
 }
 
-nav.topnav a:link, nav.topnav a:visited {
+nav.topnav a:link,
+nav.topnav a:visited {
   color: #737373;
   text-decoration: none;
   cursor: pointer;
@@ -447,7 +448,8 @@ nav.topnav .search-input::placeholder {
   background-color: #eee;
 }
 
-.sidebar ul a:link, .sidebar ul a:visited {
+.sidebar ul a:link,
+.sidebar ul a:visited {
   color: #737373;
   text-decoration: none;
   cursor: pointer;
@@ -465,6 +467,56 @@ nav.topnav .search-input::placeholder {
   width: 22px;
 }
 
+.sidebar ul li ul {
+  width: 100%;
+  list-style-type: none;
+  padding-left: inherit;
+}
+
+.sidebar ul li ul li {
+  cursor: pointer;
+}
+
+.sidebar ul li ul li input {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  color: #737373;
+  background-color: #ededed;
+}
+
+.sidebar ul li ul li input::-webkit-input-placeholder {
+  font-size: 16px;
+  color: #6b93ef;
+  font-weight: bold;
+}
+
+.sidebar ul li ul li input:-ms-input-placeholder {
+  font-size: 16px;
+  color: #6b93ef;
+  font-weight: bold;
+}
+
+.sidebar ul li ul li input::-ms-input-placeholder {
+  font-size: 16px;
+  color: #6b93ef;
+  font-weight: bold;
+}
+
+.sidebar ul li ul li input::placeholder {
+  font-size: 16px;
+  color: #6b93ef;
+  font-weight: bold;
+}
+
+.sidebar ul li ul li:last-child p {
+  margin: 0;
+  margin-left: 25px;
+  width: 100%;
+}
+
 .sidebar ul li.active {
   background: #c5c5c578;
   font-weight: bold;
@@ -476,6 +528,7 @@ nav.topnav .search-input::placeholder {
 
 .todo {
   width: 80%;
+  display: none;
   -webkit-transition: width 0.40s;
   transition: width 0.40s;
 }
@@ -495,9 +548,6 @@ nav.topnav .search-input::placeholder {
 .todo .heading .heading-left {
   display: inline-block;
   padding: 15px;
-}
-
-.todo .heading .heading-left p {
   display: inline-block;
   font-size: 28px;
   color: #6b93ef;
@@ -522,7 +572,7 @@ nav.topnav .search-input::placeholder {
   font-weight: bold;
 }
 
-.todo ul.list {
+.todo ul.tasks {
   overflow: auto;
   height: 91%;
   list-style-type: none;
@@ -530,7 +580,7 @@ nav.topnav .search-input::placeholder {
   padding-left: 0px;
 }
 
-.todo ul.list li.task {
+.todo ul.tasks li.task {
   -webkit-transition: height 3s;
   transition: height 3s;
   padding: 20px 0px;
@@ -540,27 +590,27 @@ nav.topnav .search-input::placeholder {
   position: relative;
 }
 
-.todo ul.list li.task button {
+.todo ul.tasks li.task button {
   position: absolute;
   top: 35%;
   font-size: 20px;
 }
 
-.todo ul.list li.task div {
+.todo ul.tasks li.task div {
   display: inline-block;
   width: 90%;
 }
 
-.todo ul.list li.task div {
+.todo ul.tasks li.task div {
   margin-left: 45px;
 }
 
-.todo ul.list li.task .fav {
+.todo ul.tasks li.task .fav {
   float: right;
   margin-right: 10px;
 }
 
-.todo ul.list li.task input.add-input {
+.todo ul.tasks li.task input.add-input {
   border: none;
   outline: none;
   width: 80%;
@@ -569,12 +619,12 @@ nav.topnav .search-input::placeholder {
   color: #737373;
 }
 
-.todo ul.list li.task input.add-input:placeholder {
+.todo ul.tasks li.task input.add-input:placeholder {
   font-size: inherit;
   color: #737373;
 }
 
-.todo ul.list li.task .add-button {
+.todo ul.tasks li.task .add-button {
   position: static;
   margin: 0px 30px;
   float: right;
@@ -583,26 +633,27 @@ nav.topnav .search-input::placeholder {
   display: none;
 }
 
-.todo ul.list li:last-child {
+.todo ul.tasks li:last-child {
   position: -webkit-sticky;
   position: sticky;
   bottom: 0;
   background: white;
 }
 
-.todo ul.list li:not(:last-child) {
+.todo ul.tasks li:not(:last-child) {
   cursor: pointer;
 }
 
-.todo ul.list li.active {
+.todo ul.tasks li.active {
   background-color: #c7ddf54a;
 }
 
-.todo ul.list li.active button {
+.todo ul.tasks li.active button {
   background-color: transparent;
 }
 
-.todo ul.list a:link, .todo ul.list a:visited {
+.todo ul.tasks a:link,
+.todo ul.tasks a:visited {
   color: #737373;
   text-decoration: none;
   cursor: pointer;
@@ -618,7 +669,8 @@ nav.topnav .search-input::placeholder {
   transition: width 0.40s;
 }
 
-.task-description a:link, .task-description a:visited {
+.task-description a:link,
+.task-description a:visited {
   color: #737373;
   text-decoration: none;
   cursor: pointer;
@@ -787,12 +839,19 @@ nav.topnav .search-input::placeholder {
   width: 4%;
 }
 
-.sidebar-collapse ul a li p, .sidebar-collapse ul a li div {
+.sidebar-collapse ul a li p,
+.sidebar-collapse ul a li div,
+.sidebar-collapse ul li ul li p,
+.sidebar-collapse ul li ul li div {
   display: none;
   white-space: nowrap;
 }
 
 .todo-full-width {
   width: 100%;
+}
+
+.my-day {
+  display: inline;
 }
 /*# sourceMappingURL=style.css.map */

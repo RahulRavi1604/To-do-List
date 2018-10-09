@@ -1,141 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>TO-DO List</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
-  </head>
-  <body>
-    <div class="container">
-      <nav class="topnav p-y-5 p-x-10">
-        <ul class="m-y-auto p-l-0">
-          <li class="topnav-left m-t-10">
-            <a href="#">
-              <p>TO-DO</p>
-            </a>
-          </li>
-          <li class="topnav-center m-y-5 m-x-10">
-            <button class="search-icon">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TO-DO List</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <nav class="topnav p-y-5 p-x-10">
+      <ul class="m-y-auto p-l-0">
+        <li class="topnav-left m-t-10">
+          <a href="#">
+            <p>TO-DO</p>
+          </a>
+        </li>
+        <li class="topnav-center m-y-5 m-x-10">
+          <button class="search-icon">
             <i class="fa fa-search fa-flip-horizontal"></i>
-            </button>
-            <input class="search-input" placeholder="Search" />
+          </button>
+          <input class="search-input" placeholder="Search" />
+        </li>
+      </ul>
+    </nav>
+    <div class="page-content">
+      <nav class="sidebar">
+        <ul class="m-y-auto p-l-0 p-y-20">
+          <li><a href="#"><i class="fa fa-bars m-t-10 m-l-20 m-y-auto toggle-collapse"></i></a></li>
+          <a href="#">
+            <li>
+              <i class="fa fa-sun-o m-y-auto m-l-20"></i>
+              <p class="m-l-20">My Day</p>
+              <div class="m-y-auto m-r-10"></div>
+            </li>
+          </a>
+          <a href="#">
+            <li>
+              <i class="fa fa-star-o m-y-auto  m-l-20"></i>
+              <p class="m-l-20">Important</p>
+              <div class="m-y-auto m-r-10"></div>
+            </li>
+          </a>
+          <a href="#">
+            <li>
+              <i class="fa fa-calendar m-y-auto  m-l-20"></i>
+              <p class="m-l-20">Planned</p>
+              <div class="m-y-auto m-r-10"></div>
+            </li>
+          </a>
+          <a href="#">
+            <li>
+              <i class="fa fa-home sidenav-blue m-y-auto  m-l-20"></i>
+              <p class="m-l-20">Tasks</p>
+              <div class="m-y-auto m-r-10"></div>
+            </li>
+          </a>
+          <li>
+            <ul class="lists">
+              <li>
+                <i class="fa fa-plus sidenav-blue m-y-auto  m-l-20 add-list"></i>
+                <p class="m-l-20 sidenav-blue"><input type="text" maxlength="10" class="add-list-input" placeholder="New List"/></p>
+                <div class=" m-r-10 m-y-auto"></div>
+              </li>
+            </ul>
           </li>
         </ul>
       </nav>
-      <div class="page-content">
-        <nav class="sidebar">
-          <ul class="m-y-auto p-l-0 p-y-20">
-              <li><a href="#"><i class="fa fa-bars m-t-10 m-l-20 m-y-auto toggle-collapse"></i></a></li>
-            <a href="#">
-              <li>
-                <i class="fa fa-sun-o m-y-auto m-l-20"></i>
-                <p class="m-l-20">My Day</p>
-                <div class="m-y-auto m-r-10"></div>
-              </li>
-            </a>
-            <a href="#">
-              <li>
-                <i class="fa fa-star-o m-y-auto  m-l-20"></i>
-                <p class="m-l-20">Important</p>
-                <div class="m-y-auto m-r-10"></div>
-              </li>
-            </a>
-            <a href="#">
-              <li>
-                <i class="fa fa-calendar m-y-auto  m-l-20"></i>
-                <p class="m-l-20">Planned</p>
-                <div class="m-y-auto m-r-10"></div>
-              </li>
-            </a>
-            <a href="#">
-              <li>
-                <i class="fa fa-home sidenav-blue m-y-auto  m-l-20"></i>
-                <p class="m-l-20">Tasks</p>
-                <div class="m-y-auto m-r-10">1</div>
-              </li>
-            </a>
-            <a href="#">
-              <li class="m-t-20 active">
-                <i class="fa fa-list-ul sidenav-blue m-y-auto  m-l-20"></i>
-                <p class="m-l-20 sidenav-blue">My List</p>
-                <div class="m-y-auto m-r-10 sidenav-blue">0</div>
-              </li>
-            </a>
-            <a href="#">
-              <li>
-                <i class="fa fa-plus sidenav-blue m-y-auto  m-l-20"></i>
-                <p class="m-l-20 sidenav-blue">New List</p>
-                <div class=" m-r-10 m-y-auto"></div>
-              </li>
-            </a>
-          </ul>
-        </nav>
-        <div class="todo">
-          <div class="heading">
-            <div class="heading-left">
-              <p class="m-r-10">My List</p>
-              <i class="fa fa-ellipsis-h"></i>
-            </div>
-            <div class="heading-right">
-              <i class="fa fa-exchange fa-rotate-90"></i>
-              <p>Sort</p>
-            </div>
+      <div class="my-day">
+        Welcome Text.
+      </div>
+      <div class="todo">
+        <div class="heading">
+          <div class="heading-left m-r-10 p-l-10">
+            My List
           </div>
-          <ul class="list m-y-auto">
-            <li  class="task">
-              <button><i class="fa fa-circle-thin status"></i></button>
-                <div class="todo-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, quod.</div>
-              <button><i class="fa fa-star-o important"></i></button>
-            </li>
-            <li  class="task">
-              <button><i class="fa fa-plus plus-icon"></i></button>
-              <input maxlength="255" class="add-input m-y-auto" placeholder="Add a task"/>
-              <button class="add-button">Add</button>
-            </li>
-          </ul>
+          <i class="fa fa-ellipsis-h"></i>
+          <div class="heading-right">
+            <i class="fa fa-exchange fa-rotate-90"></i>
+            <p>Sort</p>
+          </div>
         </div>
-        <div class="task-description">
-          <div class="card task-details">
-            <button><i class="fa fa-circle-thin task-status"></i></button>
-              <div class="task-text"></div>
+        <ul class="tasks m-y-auto">
+          <li class="task add-task-li">
+            <button><i class="fa fa-plus plus-icon"></i></button>
+            <input maxlength="255" class="add-input m-y-auto" placeholder="Add a task" />
+            <button class="add-button">Add</button>
+          </li>
+        </ul>
+      </div>
+      <div class="task-description">
+        <div class="card task-details">
+          <button><i class="fa fa-circle-thin task-status"></i></button>
+          <div class="task-text"></div>
           <button><i class="fa fa-star-o task-important"></i></button>
-          </div>
-          <div class="card add-to-day">
-            <button>
-              <i class="fa fa-sun-o"></i>
-              <p class="m-l-20">Add to My Day</p>
-            </button>
-          </div>
-          <div class="card settings">
-            <button>
-              <i class="fa fa-clock-o"></i>
-              <p class="m-l-20">Remind Me</p>
-            </button>
-            <button>
-              <i class="fa fa-calendar"></i>
-              <p class="m-l-20">Add due date</p>
-            </button>
-            <button>
-              <i class="fa fa-repeat"></i>
-              <p class="m-l-20">Repeat</p>
-            </button>
-          </div>
-            <textarea class="note-card" placeholder="Add a note"></textarea>
-          <div class="bottom-settings">
-            <button class="toggle-slider"><i class="fa fa-arrow-right"></i>
-            </button>
-            <p>Created Today</p>
-            </button>
-            <button class="delete-task"><i class="fa fa-trash-o"></i>
-            </button>
-          </div>
+        </div>
+        <div class="card add-to-day">
+          <button>
+            <i class="fa fa-sun-o"></i>
+            <p class="m-l-20">Add to My Day</p>
+          </button>
+        </div>
+        <div class="card settings">
+          <button>
+            <i class="fa fa-clock-o"></i>
+            <p class="m-l-20">Remind Me</p>
+          </button>
+          <button>
+            <i class="fa fa-calendar"></i>
+            <p class="m-l-20">Add due date</p>
+          </button>
+          <button>
+            <i class="fa fa-repeat"></i>
+            <p class="m-l-20">Repeat</p>
+          </button>
+        </div>
+        <textarea class="note-card" placeholder="Add a note"></textarea>
+        <div class="bottom-settings">
+          <button class="toggle-slider"><i class="fa fa-arrow-right"></i>
+          </button>
+          <p>Created Today</p>
+          </button>
+          <button class="delete-task"><i class="fa fa-trash-o"></i>
+          </button>
         </div>
       </div>
     </div>
-  </body>
-  <script src="script.js"></script>
+  </div>
+</body>
+<script src="script.js"></script>
+
 </html>

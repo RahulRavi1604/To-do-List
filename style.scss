@@ -1,32 +1,36 @@
 @import "helper-classes.scss";
-$primary-black:lighten(black,45%);
+$primary-black:lighten(black, 45%);
 $topnav-blue:#1479d3e0;
 $primary-blue: #6b93ef;
 $search-background:#c7ddf5;
-$header-color:#fff;;
+$header-color:#fff;
 $sidebar-background:#eee;
 $heading-padding:15px;
-
 .container {
   height: 97vh;
 }
+
 body {
-  color:$primary-black;
+  color: $primary-black;
   font-family: 'Source Sans Pro', sans-serif;
 }
+
 button {
-  outline:none;
-  border:none;
+  outline: none;
+  border: none;
   background-color: #fff;
-  color:$primary-black;
+  color: $primary-black;
   cursor: pointer;
 }
+
 .m-b-40 {
-  margin-bottom: 40px; 
+  margin-bottom: 40px;
 }
+
 p {
   margin: auto;
 }
+
 @mixin nav-ul {
   list-style-type: none;
 }
@@ -34,114 +38,145 @@ p {
 nav.topnav {
   background-color: $topnav-blue;
   font-size: 20px;
-   ul {
-     @include nav-ul();
-     text-align: center;
-   }
-   li.topnav-left {
+  ul {
+    @include nav-ul();
+    text-align: center;
+  }
+  li.topnav-left {
     display: block;
     float: left;
-   }
-   a:link, a:visited {
-     color:$primary-black;
-     text-decoration:none;
-     cursor: pointer;
   }
-   li.topnav-left p {
+  a:link,
+  a:visited {
+    color: $primary-black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  li.topnav-left p {
     display: inline;
-    color:$header-color;
-   }
-   li.topnav-center {
+    color: $header-color;
+  }
+  li.topnav-center {
     display: inline-block;
     border-radius: 5px;
-    height:38px;
+    height: 38px;
     background-color: $search-background;
-   }
-   button.search-icon i {
-     font-size:19px;
-   }
-   button.search-icon {
-     border: none;
-     height: 36px;
-     width: 40px;
-     color: $primary-blue;
-     background-color: transparent;
-   }
-   .search-input {
-     border:none;
-     height: 36px;
-     background-color: transparent;
-     width: 82%;
-     outline:none;
-     font-size:17px;
-     color:$primary-blue;
-     &::placeholder {
-       color:$primary-blue;
-       font-size:17px;
-     }
-   }
+  }
+  button.search-icon i {
+    font-size: 19px;
+  }
+  button.search-icon {
+    border: none;
+    height: 36px;
+    width: 40px;
+    color: $primary-blue;
+    background-color: transparent;
+  }
+  .search-input {
+    border: none;
+    height: 36px;
+    background-color: transparent;
+    width: 82%;
+    outline: none;
+    font-size: 17px;
+    color: $primary-blue;
+    &::placeholder {
+      color: $primary-blue;
+      font-size: 17px;
+    }
+  }
 }
+
 .page-content {
   height: 94%;
   display: inline-flex;
   overflow: hidden;
   width: 100%;
 }
+
 .sidebar {
-  width:22%;
+  width: 22%;
   transition: width 0.4s;
   height: 100%;
-  font-size:18.5px;
+  font-size: 18.5px;
   ul {
     @include nav-ul();
     height: 94%;
-    background-color:$sidebar-background;
-    a:link, a:visited {
-      color:$primary-black;
-      text-decoration:none;
+    background-color: $sidebar-background;
+    a:link,
+    a:visited {
+      color: $primary-black;
+      text-decoration: none;
       cursor: pointer;
     }
     li {
       display: flex;
-      width:100%;
-      height:40px;
+      width: 100%;
+      height: 40px;
       i {
         width: 22px;
       }
+      ul {
+        width: 100%;
+        list-style-type: none;
+        padding-left: inherit;
+        li {
+          cursor: pointer;
+          input {
+            border: none;
+            outline: none;
+            width: 100%;
+            height: 100%;
+            font-size: 16px;
+            color: #737373;
+            background-color: #ededed;
+            &::placeholder {
+              font-size: 16px;
+              color: $primary-blue;
+              font-weight: bold;
+            }
+          }
+        }
+        li:last-child p {
+          margin: 0;
+          margin-left: 25px;
+          width: 100%;
+        }
+      }
     }
     li.active {
-      background:#c5c5c578;
+      background: #c5c5c578;
       font-weight: bold;
     }
     .sidenav-blue {
-      color:#7f9bef;
+      color: #7f9bef;
     }
   }
 }
+
 .todo {
   width: 80%;
+  display: none;
   transition: width 0.40s;
-   ul.list {
-     @include nav-ul();
-   }
-   .heading {
+  ul.list {
+    @include nav-ul();
+  }
+  .heading {
     i {
-      font-size:20px;
+      font-size: 20px;
     }
-     width: 100%;
-     .heading-left{
+    width: 100%;
+    .heading-left {
       display: inline-block;
       padding: $heading-padding;
-      p {
-        display: inline-block;
-        font-size: 28px;
-        color:$primary-blue;
-        font-weight: bold;
-      }
-     }
-     .heading-right {
+      display: inline-block;
+      font-size: 28px;
+      color: $primary-blue;
+      font-weight: bold;
+    }
+    .heading-right {
       padding: $heading-padding;
-      color:$primary-blue;
+      color: $primary-blue;
       i {
         display: inline-block;
       }
@@ -153,215 +188,228 @@ nav.topnav {
       float: right;
       width: 10%;
       text-align: right;
-     }
-   }
-   ul.list {
+    }
+  }
+  ul.tasks {
     overflow: auto;
-     height:91%;
-     @include nav-ul;
-     width:100%;
-     padding-left:0px;
-     li.task {
-       transition: height 3s;
-       padding:20px 0px;
-       margin:0px 2.5%;
-       word-break: break-all;
-       border-bottom: 1px solid #6e6e6e52;
-       position: relative;
-       button {
-         position: absolute;
-         top:35%;
-         font-size:20px;
-       }
-       div {
-         display: inline-block;
-         width: 90%;
-       }
-       div {
+    height: 91%;
+    @include nav-ul;
+    width: 100%;
+    padding-left: 0px;
+    li.task {
+      transition: height 3s;
+      padding: 20px 0px;
+      margin: 0px 2.5%;
+      word-break: break-all;
+      border-bottom: 1px solid #6e6e6e52;
+      position: relative;
+      button {
+        position: absolute;
+        top: 35%;
+        font-size: 20px;
+      }
+      div {
+        display: inline-block;
+        width: 90%;
+      }
+      div {
         margin-left: 45px;
-       }
-       .fav {
-         float:right;
-         margin-right:10px;
-       }     
-       input.add-input {
-         border:none;
-         outline:none;
-         width:80%;
-         height:100%;
-         margin-left:45px;
-         color:#737373;
-         &:placeholder {
-           font-size: inherit;
-           color:#737373;
-         }
-       }
-       .add-button {
+      }
+      .fav {
+        float: right;
+        margin-right: 10px;
+      }
+      input.add-input {
+        border: none;
+        outline: none;
+        width: 80%;
+        height: 100%;
+        margin-left: 45px;
+        color: #737373;
+        &:placeholder {
+          font-size: inherit;
+          color: #737373;
+        }
+      }
+      .add-button {
         position: static;
         margin: 0px 30px;
         float: right;
         font-size: 17px;
-        color:$primary-blue;
+        color: $primary-blue;
         display: none;
-       }
-     }
-     li:last-child {
-       position: sticky;
-       bottom:0;
-       background: white;
-     }
-     li:not(:last-child) {
-       cursor: pointer;
-     }
-     li.active {
-       background-color: #c7ddf54a;
-       button {
-        background-color: transparent;
-       }
-      }  
-     a:link, a:visited {
-      color:$primary-black;
-      text-decoration:none;
+      }
+    }
+    li:last-child {
+      position: sticky;
+      bottom: 0;
+      background: white;
+    }
+    li:not(:last-child) {
       cursor: pointer;
-     }
+    }
+    li.active {
+      background-color: #c7ddf54a;
+      button {
+        background-color: transparent;
+      }
+    }
+    a:link,
+    a:visited {
+      color: $primary-black;
+      text-decoration: none;
+      cursor: pointer;
+    }
   }
 }
+
 .task-description {
-  width:0%;
+  width: 0%;
   overflow: hidden;
   background-color: #ededed;
   transform: translateX(110%);
   transition: width 0.40s;
-  a:link, a:visited {
-    color:$primary-black;
-    text-decoration:none;
+  a:link,
+  a:visited {
+    color: $primary-black;
+    text-decoration: none;
     cursor: pointer;
- }
- .card {
+  }
+  .card {
     font-size: 18.5px;
     border: 1px solid #eee;
     margin: 5px 10px 15px 10px;
-    padding:5px;
+    padding: 5px;
     background-color: #fff;
     i {
-      font-size:18px;
+      font-size: 18px;
     }
   }
   .task-details {
-    margin-top:10px;
+    margin-top: 10px;
     display: flex;
     button {
-      padding:10px 2px;
+      padding: 10px 2px;
       display: inline-block;
-      width:10%;
+      width: 10%;
       text-align: center;
-      height:max-content;
+      height: max-content;
     }
     .fav {
       display: inline-block;
-      width:10%;
+      width: 10%;
       text-align: center;
       float: right;
     }
-
-.task-text {
+    .task-text {
       display: inline-block;
       font-weight: bold;
       min-width: 80%;
       margin-left: 5px;
-      font-size:21px;
+      font-size: 21px;
       max-height: 255px;
       overflow: hidden;
       text-overflow: ellipsis;
-      word-wrap:break-word
+      word-wrap: break-word
+    }
   }
-  }
-  .add-to-day, {
+  .add-to-day {
     button {
       font-size: 16px;
       width: 100%;
-      height:45px;
+      height: 45px;
       text-align: left;
       display: inline-flex;
     }
   }
   .settings {
-      button {
-        font-size: 16px;
-        width: 100%;
-        text-align: left;
-        height:45px;
-        display: inline-flex;
+    button {
+      font-size: 16px;
+      width: 100%;
+      text-align: left;
+      height: 45px;
+      display: inline-flex;
     }
     button:not(:first-child) {
-      padding-top:10px;
-     }
+      padding-top: 10px;
+    }
     button:not(:last-child) {
-      padding-bottom:10px;
+      padding-bottom: 10px;
       border-bottom: 1px solid #6e6e6e52;
-     }
+    }
   }
   textarea.note-card {
     font-size: 16.5px;
     border: 1px solid #eee;
     margin: 10px;
-    width:85%;
+    width: 85%;
     height: 10%;
-    padding:13px;
-    color:$primary-black;
+    padding: 13px;
+    color: $primary-black;
     background-color: #fff;
-    outline:none;
-    resize:none;
+    outline: none;
+    resize: none;
     &::placeholder {
-     font-family: 'Source Sans Pro', sans-serif;
-     font-size: 16.5px
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 16.5px
     }
   }
   .bottom-settings {
-    position:absolute;
+    position: absolute;
     bottom: 0;
     right: 0;
-    display:inline-flex;
-    height:50px;
-    width:100%;
+    display: inline-flex;
+    height: 50px;
+    width: 100%;
     border-top: 1px solid #6e6e6e52;
-    padding-top:10px;
+    padding-top: 10px;
     background-color: transparent;
     button.toggle-slider {
-      width:10%;
+      width: 10%;
       font-size: 18px;
       background-color: transparent;
       i {
-      color:$primary-black;
+        color: $primary-black;
       }
     }
     button.delete-task {
-      width:10%;
+      width: 10%;
       font-size: 18px;
       background-color: transparent;
       i {
-      color:$primary-black;
+        color: $primary-black;
       }
     }
   }
 }
+
 .list-open {
-  width:55%;
+  width: 55%;
   transition: width 0.40s;
 }
+
 .desc-open {
-  width:30%;
+  width: 30%;
   transform: translateX(0%);
   transition: width 0.40s;
-   display: inline;
+  display: inline;
 }
+
 .sidebar-collapse {
-  width:4%;
-  ul a li p, ul a li div {
+  width: 4%;
+  ul a li p,
+  ul a li div,
+  ul li ul li p,
+  ul li ul li div {
     display: none;
     white-space: nowrap;
   }
 }
+
 .todo-full-width {
-  width:100%;
+  width: 100%;
+}
+
+.my-day {
+  display: inline;
 }
