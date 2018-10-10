@@ -1,30 +1,8 @@
 var doc = document;
 
-var desc = getElementByClassName("task-description");
-var todo = getElementByClassName("todo");
-var slider = getElementByClassName("toggle-slider");
-var tasktext = getElementByClassName("task-text");
-var deleteButton = getElementByClassName("delete-task");
-var tasktext = getElementByClassName("task-text");
-var plusIcon = getElementByClassName("plus-icon");
-var addInput = getElementByClassName("add-input");
-var collapseButton = getElementByClassName("toggle-collapse");
-var sidebar = getElementByClassName("sidebar");
-var addButton = getElementByClassName("add-button");
-var listInput = getElementByClassName("add-list-input");
-var addListIcon = getElementByClassName("add-list");
-var lists = getElementByClassName("lists");
-var myDay = getElementByClassName("my-day");
-var listHeading = getElementByClassName("heading-left");
-
-
-var listRows = getElementsByClassName("list");
-var tasks = getElementsByClassName("task");
-var statusButtons = getElementsByClassName("status");
-var importantButtons = getElementsByClassName("important");
-
 var obj = []
 var list = {
+    id: 0,
     name: "Untitled List",
     numberOfTasks: 0,
     active: false,
@@ -32,6 +10,7 @@ var list = {
 }
 
 var task = {
+    id: 0,
     name: "Untitled Task",
     isChecked: false,
     isImportant: false,
@@ -43,115 +22,146 @@ var task = {
     createdDate: "",
 }
 
-function List(name, numberOfTasks) {
+function List(id, name, numberOfTasks) {
     var newListObj = Object.create(list);
+    newListObj.id = id;
     newListObj.name = name;
     newListObj.numberOfTasks = numberOfTasks;
     newListObj.tasks = [];
     newListObj.active = false;
     return newListObj;
 }
-function Task(name) {
+function Task(id, name) {
     var newTaskObj = Object.create(task);
+    newTaskObj.id = id;
     newTaskObj.name = name;
     isImportant = false;
+    isChecked = false;
+    addToDayDate = "Add To Date";
+    note = "";
     return newTaskObj;
 }
 
-function init() {
+var clickEvent = "click";
+var focusEvent = "focus";
+var blurEvent = "blur";
+var keyPressEvent = "keypress";
+var keyDownEvent = "keydown";
 
+
+
+
+
+(function() {
+
+
+    var myDay = getElementByClassName("my-day-li");
+    myDay.addEventListener(clickEvent, openDayWindow, false);
+
+    var lists = getElementByClassName("lists");
     obj.forEach(function (list) {
         lists.insertBefore(createListElement(list), lists.lastChild.previousSibling);
     });
 
+    var tasks = getElementsByClassName("task");
     for (var index = 0; index < tasks.length - 1; index++) {
-        tasks[index].addEventListener('click', openTaskDescriptionWindow, true);
+        tasks[index].addEventListener(clickEvent, openTaskDescriptionWindow, true);
     }
-    for (var index = 0; index < listRows.length - 1; index++) {
-        listRows[index].addEventListener('click', function () { displayTasks(); }, false);
-    }
-    slider.addEventListener('click', closeTaskDescriptionWindow, false);
 
-    slider.addEventListener('click', closeTaskDescriptionWindow, false);
-    deleteButton.addEventListener('click', deleteTask, false);
-    plusIcon.addEventListener('click', addNewTask, false);
-    addListIcon.addEventListener('click', addNewList, false);
-    collapseButton.addEventListener('click', function () {
-        toggleClass(sidebar, "sidebar-collapse");
-        toggleClass(todo, "todo-full-width");
+    var listRows = getElementsByClassName("list");
+    for (var index = 0; index < listRows.length - 1; index++) {
+        listRows[index].addEventListener(clickEvent, function () { displayTasks(); }, false);
+    }
+
+    var slider = getElementByClassName("toggle-slider");
+    slider.addEventListener(clickEvent, closeTaskDescriptionWindow, false);
+    slider.addEventListener(clickEvent, closeTaskDescriptionWindow, false);
+
+    var deleteTaskButton = getElementByClassName("delete-task");
+    deleteTaskButton.addEventListener(clickEvent, deleteTask, false);
+    var deleteListButton = getElementByClassName("delete-list-icon");
+    deleteListButton.addEventListener(clickEvent, deleteList, false);
+
+    var plusIcon = getElementByClassName("plus-icon");
+    var addListIcon = getElementByClassName("add-list");
+
+    plusIcon.addEventListener(clickEvent, addNewTask, false);
+    var addTaskDiv = getElementByClassName("add-task-li");
+    addTaskDiv.addEventListener(clickEvent, addNewTask, false);
+    addListIcon.addEventListener(clickEvent, addNewList, false);
+
+    var collapseButton = getElementByClassName("toggle-collapse");
+    collapseButton.addEventListener(clickEvent, function () {
+        toggleClass(getElementByClassName("sidebar"), "sidebar-collapse");
+        toggleClass(getElementByClassName("todo"), "todo-full-width");
     }, false);
-    addInput.addEventListener('focus', handleNewTaskInputFocus, false);
-    addInput.addEventListener('blur', handleNewTaskInputBlur, false);
-    tasks[tasks.length - 1].addEventListener("click", addNewTask, false);
-    addInput.addEventListener('keypress', function (e) {
+
+    var addInput = getElementByClassName("add-input");
+    addInput.addEventListener(focusEvent, handleNewTaskInputFocus, false);
+    addInput.addEventListener(blurEvent, handleNewTaskInputBlur, false);
+
+    var renameInput = getElementByClassName("list-rename-input");
+    renameInput.addEventListener(blurEvent, handleListRenameInputBlur, false);
+
+
+    var listInput = getElementByClassName("add-list-input");
+    listInput.addEventListener(blurEvent, handleNewListInputBlur, false);
+
+    tasks[tasks.length - 1].addEventListener(onclick, addNewTask, false);
+    addInput.addEventListener(keyPressEvent, function (e) {
         var key = e.which || e.keyCode;
         if (key === 13) {
             addNewTask();
         }
     });
-    listInput.addEventListener('keypress', function (e) {
+    listInput.addEventListener(keyPressEvent, function (e) {
         var key = e.which || e.keyCode;
         if (key === 13) {
             addNewList();
         }
     });
+
+    var importantButtons = getElementsByClassName("important");
+
     for (var index = 0; index < importantButtons.length; index++) {
-        importantButtons[index].addEventListener('click', function () {toggleBetweenClasses(event.target, "fa-star-o", "fa-star");}, false);
+        importantButtons[index].addEventListener(clickEvent, function () {
+            toggleBetweenClasses(event.target, "fa-star-o", "fa-star");
+        }, false);
     }
+    var statusButtons = getElementsByClassName("status");
+
     for (var index = 0; index < statusButtons.length; index++) {
-        statusButtons[index].addEventListener('click', function () {toggleBetweenClasses(event.target, "fa-circle-thin", "fa-check-circle-o");}, false);
+        statusButtons[index].addEventListener(clickEvent, function () {
+            toggleBetweenClasses(event.target, "fa-circle-thin", "fa-check-circle-o");
+        }, false);
     }
-}
-init();
 
+    var taskStatus = getElementByClassName("task-status");
+    var taskImportant = getElementByClassName("task-important");
+    taskImportant.addEventListener(clickEvent, function () {
+        toggleBetweenClasses(event.target, "fa-star-o", "fa-star");
+        var taskDetails = getElementByClassName("task-details");
+        var taskId = taskDetails.id.split("-")[1];
+        var task = obtainTaskObjectById(taskId);
+        task.isImportant = !task.isImportant;
+        toggleBetweenClasses(doc.getElementById("task" + taskId).lastChild, "fa-star-o", "fa-star");
+    }, false);
 
+    taskStatus.addEventListener(clickEvent, function () {
+        toggleBetweenClasses(event.target, "fa-circle-thin", "fa-check-circle-o");
+        var taskDetails = getElementByClassName("task-details");
+        var taskId = taskDetails.id.split("-")[1];
+        var task = obtainTaskObjectById(taskId);
+        task.isChecked = !task.isChecked;
+        toggleBetweenClasses(doc.getElementById("task" + taskId).firstChild, "fa-circle-thin", "fa-check-circle-o");
+    }, false);
 
+    var addToDayButton = getElementByClassName("add-to-day");
+    addToDayButton.addEventListener(clickEvent, addToDay, false);
+    var noteElement = getElementByClassName("note-card");
+    noteElement.addEventListener(blurEvent, addNote, false);
 
-function NewElement(elementName, classesToAdd, parentElement, eventAction, eventSuccessFunction, useCapture) {
-    this.elementName = elementName,
-    this.classesToAdd = classesToAdd,
-    this.parentElement = parentElement;
-    this.eventAction = eventAction;
-    this.eventSuccessFunction = eventSuccessFunction;
-    this.useCapture = useCapture;
-}
-
-function createNewElement(newElement) {
-    element = doc.createElement(newElement.elementName);
-    for (var index = 0; index < newElement.classesToAdd.length; index++) {
-        element.classList.add(newElement.classesToAdd[index]);
-    }
-    element.addEventListener(newElement.eventAction, newElement.eventSuccessFunction, newElement.useCapture);
-    if (newElement.parentElement != undefined) {
-        newElement.parentElement.appendChild(element);
-    }
-    return element;
-}
-
-function createTaskElement(task, isCreatedByUser) {
-    var mainList = doc.getElementsByClassName("tasks")[0];
-
-    newTask = createNewElement(new NewElement('li', ['task'], undefined, 'click', openTaskDescriptionWindow, false));
-    newTask.innerHTML = "<button><i class='fa fa-circle-thin status'></i></button><div class='todo-text'>"+task.name+"</div> <button><i class='fa fa-star-o important'></i></button> ";
-    mainList.insertBefore(newTask, mainList.lastChild.previousSibling);
-    tasks[tasks.length - 2 ].querySelector("i.status").addEventListener('click', function () {toggleBetweenClasses(event.target, "fa-circle-thin", "fa-check-circle-o");}, false);
-    tasks[tasks.length - 2 ].querySelector("i.important").addEventListener('click',
-        function () {toggleBetweenClasses(event.target, "fa-star-o", "fa-star");findCurrentlist().tasks[findTargetListIndex(event.target.parentNode)+1].isImportant = true;}, false);
-    if (isCreatedByUser) {
-        findCurrentlist().tasks.push(task);
-    }
-}
-
-function createListElement(list, isCreatedByUser) {
-    newList = createNewElement(new NewElement('li', ["list"], undefined, 'click', displayTasks, false));
-    newList.innerHTML = "<i class='fa fa-list-ul sidenav-blue m-y-auto m-l-20'></i> <p class='m-l-20 sidenav-blue'>" + list.name + "</p> <div class='m-y-auto m-r-10 sidenav-blue'></div>";
-    lists.insertBefore(newList, lists.lastChild.previousSibling);
-    addListIcon.classList.replace("fa-list-ul", "fa-plus");
-    if (isCreatedByUser) {
-        obj.push(list);
-    }
-}
-
+})();
 
 
 
@@ -178,24 +188,70 @@ function getElementsByClassName(className) {
 
 
 
-
-function openTaskDescriptionWindow(evt) {
-    if (evt.target.tagName != "BUTTON" && evt.target.tagName != "I") {
-        desc.classList.add('desc-open');
-        todo.classList.add('list-open');
-        tasktext.innerHTML = (evt.target.innerText);
-        for (var index = 0; index < tasks.length; index++) {
-            tasks[index].classList.remove("active");
+function createNewElement(element) {
+    var elementObj = doc.createElement(element.name);
+    if (element.attribute) {
+        if (element.attribute.class) {
+            elementObj.className = element.attribute.class;
+        }
+        if (element.attribute.data) {
+            elementObj.innerText = element.attribute.data;
+        }
+        if (element.attribute.id) {
+            elementObj.id = element.attribute.id;
         }
     }
-    if (evt.target.classList.contains("task")) {
-        evt.target.classList.add("active");
-    } else if (evt.target.tagName == "DIV") {
-        evt.target.parentElement.classList.add("active");
+    elementObj.addEventListener(element.attribute.eventAction, element.attribute.eventSuccessFunction, element.attribute.useCapture);
+    if (element.attribute.parentElement != undefined) {
+        element.attribute.parentElement.appendChild(element);
     }
+    if (element.style) {
+        if (element.style.cursor) {
+            elementObj.style.cursor = element.style.cursor;
+        }
+    }
+    return elementObj;
+}
+
+
+
+
+
+
+function openTaskDescriptionWindow(evt) {
+    var desc = getElementByClassName("task-description");
+    var todo = getElementByClassName("todo");
+    var tasks = getElementsByClassName("task");
+    var taskStatus = getElementByClassName("task-status");
+    var taskImportant = getElementByClassName("task-important");
+    var taskDetails = getElementByClassName("task-details");
+    var taskId = findTargetTaskId(event.target);
+    var taskElement = doc.getElementById(taskId);
+    var tasktext = getElementByClassName("task-text");
+    var note = getElementByClassName("note-card");
+    var addToDayButton = getElementByClassName("add-to-day-button");
+    tasktext.innerHTML = (taskElement.innerText);
+    taskStatus.className = taskElement.firstChild.className + " task-status";
+    taskImportant.className = taskElement.lastChild.className + " task-important";
+    taskObj = obtainTaskObjectById(taskId.split("task")[1]);
+    note.value = taskObj.note;
+    if (taskObj.addToDayDate != "") {
+        addToDayButton.innerText =  "Added To Date\n" + taskObj.addToDayDate;
+    } else {
+        addToDayButton.innerText =  "Add To Date";
+    }
+    desc.classList.add('desc-open');
+    todo.classList.add('list-open');
+    for (var index = 0; index < tasks.length; index++) {
+        tasks[index].classList.remove("active");
+    }
+    taskElement.classList.add("active");
+    taskDetails.id = findCurrentlist().id + "-" + taskId.split("task")[1];
 };
 function closeTaskDescriptionWindow() {
-    var desc = doc.getElementsByClassName("task-description")[0];
+    var desc = getElementByClassName("task-description");
+    var todo = getElementByClassName("todo");
+    var tasks = getElementsByClassName("task");
     desc.classList.remove('desc-open');
     todo.classList.remove('list-open');
     for (var index = 0; index < tasks.length; index++) {
@@ -205,41 +261,74 @@ function closeTaskDescriptionWindow() {
 
 
 
+function createTaskElement(task, isCreatedByUser) {
+    var mainList = getElementByClassName("tasks");
+    var circleIcon, starIcon;
+    circleIcon = task.isChecked ? "fa-check-circle-o" : "fa-circle-thin";
+    task.isImportant ? starIcon = "fa-star" : starIcon = "fa-star-o";
+    newTask = createNewElement({ name: 'li', attribute: { id: "task" + task.id, class: 'task', eventAction: clickEvent, eventSuccessFunction: openTaskDescriptionWindow, useCapture: false } });
+    newTask.innerHTML = "<i class='fa " + circleIcon + " status'></i><div class='todo-text'>" + task.name + "</div><i class='fa " + starIcon + " important'></i>";
+    mainList.insertBefore(newTask, mainList.lastChild);
+    statusIcon = doc.getElementById(("task" + task.id)).firstChild;
+    importantIcon = doc.getElementById(("task" + task.id)).lastChild;
+    addListenerToStatusButton(statusIcon);
+    addListenerToImportantButton(importantIcon);
+    doc.getElementById("list" + findCurrentlist().id).lastChild.innerText = findCurrentlist().numberOfTasks;
+}
+
+function createListElement(list) {
+    var addListIcon = getElementByClassName("add-list");
+    var lists = getElementByClassName("lists");
+
+    newList = createNewElement({ name: 'li', attribute: { id: "list" + list.id, class: 'list', eventAction: clickEvent, eventSuccessFunction: displayTasks, useCapture: false } });
+    newList.innerHTML = "<i class='fa fa-list-ul sidenav-blue m-y-auto m-l-20'></i> <p class='m-l-20 sidenav-blue'>" + list.name + "</p> <div class='m-y-auto m-r-10 sidenav-blue'>0</div>";
+    lists.insertBefore(newList, lists.lastChild.previousSibling);
+    addListIcon.classList.replace("fa-list-ul", "fa-plus");
+}
 
 
 
 
 function addNewTask(evt) {
+    var plusIcon = getElementByClassName("plus-icon");
+    var addInput = getElementByClassName("add-input");
+
     if (plusIcon.classList.contains("fa-plus")) {
         plusIcon.classList.replace("fa-plus", "fa-circle-thin");
     }
     if (addInput.value.trim() === '' || addInput.value === "Add a Task") {
-        if (evt != undefined) {
-            if (evt.target.NodeName != 'li') {
-                addInput.focus();
-            }
+        if (evt && evt.target.NodeName != 'li') {
+            addInput.focus();
         }
     } else {
-        createTaskElement(new Task(addInput.value), true);
+        var task = {id:++findCurrentlist().numberOfTasks,name: addInput.value};
+        createTaskElement(task);
+        findCurrentlist().tasks.push(task);
         addInput.placeholder = "Add a Task";
         addInput.value = "";
     }
 };
 function addNewList(evt) {
+    var sidebar = getElementByClassName("sidebar");
+    var listInput = getElementByClassName("add-list-input");
+    var addListIcon = getElementByClassName("add-list");
+
     if (addListIcon.classList.contains("fa-plus")) {
         addListIcon.classList.replace("fa-plus", "fa-list-ul");
     }
     if (sidebar.classList.contains("sidebar-collapse")) {
         toggleClass(sidebar, "sidebar-collapse");
     }
-    if (listInput.value.trim() === '' || listInput.value === "New List") {
+    if (listInput.value.trim() === '') {
         if (evt != undefined) {
             if (evt.target.NodeName != 'li') {
                 listInput.focus();
             }
         }
     } else {
-        createListElement(List(listInput.value, 0), true);
+        var list ={id:obj.length + 1, name:listInput.value, numberOfTasks:0};
+        createListElement(list);
+        obj.push(list);
         listInput.placeholder = "New List";
         listInput.value = "";
     }
@@ -248,8 +337,11 @@ function addNewList(evt) {
 
 
 function deleteTask() {
+    var tasks = getElementsByClassName("task");
+
     for (var index = 0; index < tasks.length; index++) {
         if (tasks[index].classList.contains("active")) {
+            var tasktext = getElementByClassName("task-text");
             if (confirm(tasktext.innerHTML + " \nwill be deleted forever.\n You wont be able to undo this action.")) {
                 findCurrentlist().tasks.splice(index, 1);
                 tasks[index].remove();
@@ -258,15 +350,37 @@ function deleteTask() {
         }
     }
 };
+function deleteList() {
+    var list = findCurrentlist();
+    if (confirm(list.name + " \nwill be deleted forever.\n You wont be able to undo this action.")) {
+        obj.splice(list.id, 1);
+        doc.getElementById("list" + list.id).remove();
+        closeTaskDescriptionWindow();
+        openDayWindow();
+    };
+}
 
 
+function handleListRenameInputBlur() {
+    var renameInput = getElementByClassName("list-rename-input");
+    findCurrentlist().name = renameInput.value;
+    doc.getElementById("list" + findCurrentlist().id).querySelector("p").innerText = renameInput.value;
+}
 function handleNewTaskInputBlur() {
-    addButton.style.display = "none";
+    var addButton = getElementByClassName("add-button");
+    addButton.classList.remove("active");
     addNewTask();
+    var plusIcon = getElementByClassName("plus-icon");
     plusIcon.classList.replace("fa-circle-thin", "fa-plus");
 }
+function handleNewListInputBlur() {
+    var addListIcon = getElementByClassName("add-list");
+    addNewList();
+    addListIcon.classList.replace("fa-list-ul", "fa-plus");
+}
 function handleNewTaskInputFocus() {
-    addButton.style.display = "block";
+    var addButton = getElementByClassName("add-button");
+    addButton.classList.add("active");
 }
 
 
@@ -277,23 +391,26 @@ function handleNewTaskInputFocus() {
 
 function displayTasks() {
     closeTaskDescriptionWindow();
-    obj.forEach(list => {
-        list.active = false;
-    });
-    var index = findTargetListIndex(event.target);
+    var id = findTargetListId(event.target);
+    var lists = getElementsByClassName("list");
     var mainList = doc.getElementsByClassName("tasks")[0];
-    while (mainList.childNodes.length > 2) {
+    while (mainList.childNodes.length > 1) {
         mainList.removeChild(mainList.firstChild);
     }
-    myDay.style.display = "none";
-    todo.style.display = "inline-block";
-    obj[index].active = true;
-    listHeading.innerText = obj[index].name;
-    obj[index].tasks.forEach(function (task) {
+    openTasksWindow();
+    for (var index = 0; index < lists.length ; index++) {
+        lists[index].classList.remove("active");
+    }
+    doc.getElementById(id).classList.add("active");
+    obj[id.split("list")[1]].active = true;
+    var listHeading = getElementByClassName("list-rename-input");
+    listHeading.value = findCurrentlist().name;
+    findCurrentlist().tasks.forEach(function (task) {
         createTaskElement(task, false);
     })
 }
 function displayLists() {
+    var lists = getElementByClassName("lists");
     obj.forEach(function (list) {
         list.insertBefore(createListElement(list, false), lists.lastChild.previousSibling);
     });
@@ -302,27 +419,87 @@ function displayLists() {
 
 
 
-
-function findTargetListIndex(eventTargetNode) {
-    var target;
-    if (eventTargetNode.classList.contains("list")) {
-        target = eventTargetNode;
+function findTargetTaskId(eventTargetNode) {
+    if (eventTargetNode.classList.contains("task")) {
+        return eventTargetNode.id;
     } else {
-        target = eventTargetNode.parentNode;
+        return eventTargetNode.parentNode.id;
     }
-    var children = target.parentNode.childNodes;
-    for (index = 0; index < children.length; index++) {
-        if (target == children[index]) {
-            return index - 1;
-        }
+}
+function findTargetListId(eventTargetNode) {
+    if (eventTargetNode.classList.contains("list")) {
+        return eventTargetNode.id;
+    } else {
+        return eventTargetNode.parentNode.id;
     }
 }
 function findCurrentlist() {
-    var currentList;
-    obj.forEach(list => {
-        if (list.active) {
-           currentList = list;
+    for (var index = 0; index < obj.length; index++) {
+        if (obj[index].active) {
+            return obj[index];
         }
-    });
-    return currentList;
+    }
+}
+
+function addListenerToImportantButton(element) {
+    element.addEventListener(clickEvent, function () {
+        toggleBetweenClasses(element, "fa-star-o", "fa-star");
+        var elementId = (element.parentElement.id);
+        var id = elementId.split("task")[1];
+        var selectedTask = obtainTaskObjectById(id);
+        selectedTask.isImportant = !selectedTask.isImportant;
+        openTaskDescriptionWindow();
+    }, false);
+}
+function addListenerToStatusButton(element) {
+    element.addEventListener(clickEvent, function () {
+        toggleBetweenClasses(element, "fa-circle-thin", "fa-check-circle-o");
+        var elementId = (element.parentElement.id);
+        var id = elementId.split("task")[1];
+        var selectedTask = obtainTaskObjectById(id);
+        selectedTask.isChecked = !selectedTask.isChecked;
+        openTaskDescriptionWindow();
+    }, false);
+}
+
+function openTasksWindow() {
+    var myDay = getElementByClassName("my-day");
+    myDay.style.display = "none";
+    var todo = getElementByClassName("todo");
+    todo.style.display = "inline-block";
+    doc.querySelectorAll(".sidebar ul li").forEach(function(listItem){listItem.classList.remove("active")});
+}
+function openDayWindow() {
+    closeTaskDescriptionWindow();
+    var listRows = getElementsByClassName("list");
+    for (var index = 0; index < listRows.length ; index++) {
+        listRows[index].classList.remove("active");
+    }
+    var myDay = getElementByClassName("my-day");
+    getElementByClassName("my-day-li").classList.add("active");
+    myDay.style.display = "inline-block";
+    var todo = getElementByClassName("todo");
+    todo.style.display = "none";
+}
+
+function obtainTaskObjectById(id) {
+    var currentList  = findCurrentlist();
+    for (var index = 0 ; index < currentList.tasks.length ; index++) {
+        if (currentList.tasks[index].id == id) {
+            return currentList.tasks[index];
+        }
+    }
+}
+
+function addToDay() {
+    var currentDate = new Date();
+    var day = currentDate.getDate()
+    var month = currentDate.getMonth() + 1
+    var year = currentDate.getFullYear()
+    getElementByClassName("add-to-day-button").innerText = "Added To My Day\n" + day+"/"+month+"/"+year+"/";
+    findCurrentlist().tasks[doc.querySelector(".tasks .active").id.split("task")[1]-1].addToDayDate =  day+"/"+month+"/"+year+"/";
+}
+
+function addNote() {
+    findCurrentlist().tasks[doc.querySelector(".tasks .active").id.split("task")[1]-1].note = getElementByClassName("note-card").value;
 }

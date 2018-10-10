@@ -1,4 +1,4 @@
-@import "helper-classes.scss";
+@import "helper-methods.scss";
 $primary-black:lighten(black, 45%);
 $topnav-blue:#1479d3e0;
 $primary-blue: #6b93ef;
@@ -135,6 +135,10 @@ nav.topnav {
               color: $primary-blue;
               font-weight: bold;
             }
+            &:focus {
+              background-color: #ffff;
+              border: 1px solid $primary-black;
+            }
           }
         }
         li:last-child p {
@@ -173,21 +177,39 @@ nav.topnav {
       font-size: 28px;
       color: $primary-blue;
       font-weight: bold;
+      input.list-rename-input {
+        outline:none;
+        background-color: transparent;
+        border:none;
+        font-size:28px;
+        &::placeholder {
+          font-size:28px;
+        }
+        &:focus {
+          border:1px solid black;
+          width:100%;
+        }
+      }
     }
     .heading-right {
       padding: $heading-padding;
       color: $primary-blue;
+      float: right;
+      text-align: right;
       i {
         display: inline-block;
       }
-      p {
+      i.delete-list-icon {
+        cursor: pointer;
+        margin-right:10px;
+      }
+      button {
         font-size: 18.5px;
         display: inline;
         font-weight: bold;
+        color: $primary-blue;
       }
-      float: right;
-      width: 10%;
-      text-align: right;
+
     }
   }
   ul.tasks {
@@ -203,17 +225,19 @@ nav.topnav {
       word-break: break-all;
       border-bottom: 1px solid #6e6e6e52;
       position: relative;
-      button {
+      i {
         position: absolute;
         top: 35%;
         font-size: 20px;
+        padding:5px 6px;
       }
       div {
         display: inline-block;
         width: 90%;
-      }
-      div {
         margin-left: 45px;
+      }
+      i.fa-check-circle-o + div {
+        text-decoration: line-through;
       }
       .fav {
         float: right;
@@ -238,6 +262,9 @@ nav.topnav {
         font-size: 17px;
         color: $primary-blue;
         display: none;
+      }
+      .active {
+        display: block;
       }
     }
     li:last-child {
@@ -288,7 +315,10 @@ nav.topnav {
   .task-details {
     margin-top: 10px;
     display: flex;
-    button {
+    i.fa-check-circle-o + div {
+      text-decoration: line-through;
+    }
+    i {
       padding: 10px 2px;
       display: inline-block;
       width: 10%;
@@ -411,5 +441,6 @@ nav.topnav {
 }
 
 .my-day {
+  margin:auto;
   display: inline;
 }

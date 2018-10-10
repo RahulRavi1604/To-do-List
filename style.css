@@ -511,6 +511,11 @@ nav.topnav .search-input::placeholder {
   font-weight: bold;
 }
 
+.sidebar ul li ul li input:focus {
+  background-color: #ffff;
+  border: 1px solid #737373;
+}
+
 .sidebar ul li ul li:last-child p {
   margin: 0;
   margin-left: 25px;
@@ -554,11 +559,38 @@ nav.topnav .search-input::placeholder {
   font-weight: bold;
 }
 
+.todo .heading .heading-left input.list-rename-input {
+  outline: none;
+  background-color: transparent;
+  border: none;
+  font-size: 28px;
+}
+
+.todo .heading .heading-left input.list-rename-input::-webkit-input-placeholder {
+  font-size: 28px;
+}
+
+.todo .heading .heading-left input.list-rename-input:-ms-input-placeholder {
+  font-size: 28px;
+}
+
+.todo .heading .heading-left input.list-rename-input::-ms-input-placeholder {
+  font-size: 28px;
+}
+
+.todo .heading .heading-left input.list-rename-input::placeholder {
+  font-size: 28px;
+}
+
+.todo .heading .heading-left input.list-rename-input:focus {
+  border: 1px solid black;
+  width: 100%;
+}
+
 .todo .heading .heading-right {
   padding: 15px;
   color: #6b93ef;
   float: right;
-  width: 10%;
   text-align: right;
 }
 
@@ -566,10 +598,16 @@ nav.topnav .search-input::placeholder {
   display: inline-block;
 }
 
-.todo .heading .heading-right p {
+.todo .heading .heading-right i.delete-list-icon {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.todo .heading .heading-right button {
   font-size: 18.5px;
   display: inline;
   font-weight: bold;
+  color: #6b93ef;
 }
 
 .todo ul.tasks {
@@ -590,19 +628,21 @@ nav.topnav .search-input::placeholder {
   position: relative;
 }
 
-.todo ul.tasks li.task button {
+.todo ul.tasks li.task i {
   position: absolute;
   top: 35%;
   font-size: 20px;
+  padding: 5px 6px;
 }
 
 .todo ul.tasks li.task div {
   display: inline-block;
   width: 90%;
+  margin-left: 45px;
 }
 
-.todo ul.tasks li.task div {
-  margin-left: 45px;
+.todo ul.tasks li.task i.fa-check-circle-o + div {
+  text-decoration: line-through;
 }
 
 .todo ul.tasks li.task .fav {
@@ -631,6 +671,10 @@ nav.topnav .search-input::placeholder {
   font-size: 17px;
   color: #6b93ef;
   display: none;
+}
+
+.todo ul.tasks li.task .active {
+  display: block;
 }
 
 .todo ul.tasks li:last-child {
@@ -695,7 +739,11 @@ nav.topnav .search-input::placeholder {
   display: flex;
 }
 
-.task-description .task-details button {
+.task-description .task-details i.fa-check-circle-o + div {
+  text-decoration: line-through;
+}
+
+.task-description .task-details i {
   padding: 10px 2px;
   display: inline-block;
   width: 10%;
@@ -852,6 +900,7 @@ nav.topnav .search-input::placeholder {
 }
 
 .my-day {
+  margin: auto;
   display: inline;
 }
 /*# sourceMappingURL=style.css.map */

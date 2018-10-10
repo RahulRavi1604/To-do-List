@@ -33,7 +33,7 @@
         <ul class="m-y-auto p-l-0 p-y-20">
           <li><a href="#"><i class="fa fa-bars m-t-10 m-l-20 m-y-auto toggle-collapse"></i></a></li>
           <a href="#">
-            <li>
+            <li class="my-day-li active">
               <i class="fa fa-sun-o m-y-auto m-l-20"></i>
               <p class="m-l-20">My Day</p>
               <div class="m-y-auto m-r-10"></div>
@@ -64,7 +64,7 @@
             <ul class="lists">
               <li>
                 <i class="fa fa-plus sidenav-blue m-y-auto  m-l-20 add-list"></i>
-                <p class="m-l-20 sidenav-blue"><input type="text" maxlength="10" class="add-list-input" placeholder="New List"/></p>
+                <p class="m-l-20 sidenav-blue"><input type="text" maxlength="20" class="add-list-input" placeholder="New List"/></p>
                 <div class=" m-r-10 m-y-auto"></div>
               </li>
             </ul>
@@ -72,37 +72,32 @@
         </ul>
       </nav>
       <div class="my-day">
-        Welcome Text.
+        Dummy Welcome Text.
       </div>
       <div class="todo">
         <div class="heading">
           <div class="heading-left m-r-10 p-l-10">
-            My List
+            <input class="list-rename-input" size="20" maxlength="20"/>
           </div>
-          <i class="fa fa-ellipsis-h"></i>
           <div class="heading-right">
-            <i class="fa fa-exchange fa-rotate-90"></i>
-            <p>Sort</p>
+            <i class="fa fa-trash-o delete-list-icon"></i>
+            <button>
+            <i class="fa fa-exchange fa-rotate-90"></i>Sort
+          </button>
           </div>
         </div>
-        <ul class="tasks m-y-auto">
-          <li class="task add-task-li">
-            <button><i class="fa fa-plus plus-icon"></i></button>
-            <input maxlength="255" class="add-input m-y-auto" placeholder="Add a task" />
-            <button class="add-button">Add</button>
-          </li>
-        </ul>
+        <ul class="tasks m-y-auto"><li class="task add-task-li"><i class="fa fa-plus plus-icon"></i><input maxlength="255" class="add-input m-y-auto" placeholder="Add a task"/><button class="add-button">Add</button></li></ul>
       </div>
       <div class="task-description">
         <div class="card task-details">
-          <button><i class="fa fa-circle-thin task-status"></i></button>
+          <i class="fa fa-circle-thin task-status"></i>
           <div class="task-text"></div>
-          <button><i class="fa fa-star-o task-important"></i></button>
+          <i class="fa fa-star-o task-important"></i>
         </div>
         <div class="card add-to-day">
           <button>
             <i class="fa fa-sun-o"></i>
-            <p class="m-l-20">Add to My Day</p>
+            <p class="m-l-20 add-to-day-button">Add to My Day</p>
           </button>
         </div>
         <div class="card settings">
