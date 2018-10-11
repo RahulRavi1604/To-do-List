@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+
 </head>
 
 <body>
@@ -81,7 +82,7 @@
           </div>
           <div class="heading-right">
             <i class="fa fa-trash-o delete-list-icon"></i>
-            <button>
+            <button class="sort-button">
             <i class="fa fa-exchange fa-rotate-90"></i>Sort
           </button>
           </div>
@@ -91,7 +92,7 @@
       <div class="task-description">
         <div class="card task-details">
           <i class="fa fa-circle-thin task-status"></i>
-          <div class="task-text"></div>
+          <input class="task-text"/>
           <i class="fa fa-star-o task-important"></i>
         </div>
         <div class="card add-to-day">
@@ -101,24 +102,27 @@
           </button>
         </div>
         <div class="card settings">
-          <button>
+          <button class="add-reminder-date">
             <i class="fa fa-clock-o"></i>
             <p class="m-l-20">Remind Me</p>
+            <input type="date" id="reminder-date-picker" class="reminder-date-picker" required/><span></span>
           </button>
-          <button>
+          <button class="add-due-date">
             <i class="fa fa-calendar"></i>
             <p class="m-l-20">Add due date</p>
+            <input type="date" id="due-date-picker" class="due-date-picker" required/><span></span>
           </button>
-          <button>
+          <button class="add-repeat">
             <i class="fa fa-repeat"></i>
             <p class="m-l-20">Repeat</p>
+            <select class="repeat-selection"><option value="">None</option><option value="Daily">Daily</option><option value="Every Week">Every Week</option><option value="Every Month">Every Month</option><option value="Every Year">Every Year</option></select>
           </button>
         </div>
         <textarea class="note-card" placeholder="Add a note"></textarea>
         <div class="bottom-settings">
           <button class="toggle-slider"><i class="fa fa-arrow-right"></i>
           </button>
-          <p>Created Today</p>
+          <p></p>
           </button>
           <button class="delete-task"><i class="fa fa-trash-o"></i>
           </button>
@@ -128,5 +132,4 @@
   </div>
 </body>
 <script src="script.js"></script>
-
 </html>

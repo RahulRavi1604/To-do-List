@@ -30,9 +30,25 @@ button {
 p {
   margin: auto;
 }
-
+input[type=date]::-webkit-inner-spin-button, input[type=date]::-webkit-clear-button {
+  -webkit-appearance: none;
+  display: none;
+}
 @mixin nav-ul {
   list-style-type: none;
+}
+@mixin date-picker {
+  margin: auto;
+  height:16px;
+  font-size: 13px;
+  display: none;
+  background-color: transparent;
+  border: 1px solid #3a6bff;
+  color: inherit;
+  text-align: center;
+  font-size: 15px;
+  border-radius: 5px;
+  outline:none;
 }
 
 nav.topnav {
@@ -61,28 +77,28 @@ nav.topnav {
     border-radius: 5px;
     height: 38px;
     background-color: $search-background;
-  }
-  button.search-icon i {
-    font-size: 19px;
-  }
-  button.search-icon {
-    border: none;
-    height: 36px;
-    width: 40px;
-    color: $primary-blue;
-    background-color: transparent;
-  }
-  .search-input {
-    border: none;
-    height: 36px;
-    background-color: transparent;
-    width: 82%;
-    outline: none;
-    font-size: 17px;
-    color: $primary-blue;
-    &::placeholder {
+    button.search-icon i {
+      font-size: 19px;
+    }
+    button.search-icon {
+      border: none;
+      height: 36px;
+      width: 40px;
       color: $primary-blue;
+      background-color: transparent;
+    }
+    .search-input {
+      border: none;
+      height: 36px;
+      background-color: transparent;
+      width:82%;
+      outline: none;
       font-size: 17px;
+      color: $primary-blue;
+      &::placeholder {
+        color: $primary-blue;
+        font-size: 17px;
+      }
     }
   }
 }
@@ -99,10 +115,11 @@ nav.topnav {
   transition: width 0.4s;
   height: 100%;
   font-size: 18.5px;
+  overflow-y: auto;
   ul {
     @include nav-ul();
-    height: 94%;
     background-color: $sidebar-background;
+    height: 94%;
     a:link,
     a:visited {
       color: $primary-black;
@@ -113,6 +130,7 @@ nav.topnav {
       display: flex;
       width: 100%;
       height: 40px;
+      background-color: $sidebar-background;
       i {
         width: 22px;
       }
@@ -141,10 +159,14 @@ nav.topnav {
             }
           }
         }
-        li:last-child p {
-          margin: 0;
-          margin-left: 25px;
-          width: 100%;
+        li:last-child  {
+          position: sticky;
+          bottom:5px;
+          p {
+            margin: 0;
+            margin-left: 25px;
+            width: 100%;
+          }
         }
       }
     }
@@ -157,7 +179,6 @@ nav.topnav {
     }
   }
 }
-
 .todo {
   width: 80%;
   display: none;
@@ -173,7 +194,6 @@ nav.topnav {
     .heading-left {
       display: inline-block;
       padding: $heading-padding;
-      display: inline-block;
       font-size: 28px;
       color: $primary-blue;
       font-weight: bold;
@@ -269,7 +289,7 @@ nav.topnav {
     }
     li:last-child {
       position: sticky;
-      bottom: 0;
+      bottom: 5px;
       background: white;
     }
     li:not(:last-child) {
@@ -288,6 +308,9 @@ nav.topnav {
       cursor: pointer;
     }
   }
+}
+.show-todo {
+  display: inline-block;
 }
 
 .task-description {
@@ -331,7 +354,7 @@ nav.topnav {
       text-align: center;
       float: right;
     }
-    .task-text {
+    input.task-text {
       display: inline-block;
       font-weight: bold;
       min-width: 80%;
@@ -340,7 +363,11 @@ nav.topnav {
       max-height: 255px;
       overflow: hidden;
       text-overflow: ellipsis;
-      word-wrap: break-word
+      word-wrap: break-word;
+      border:none;
+      outline:none;
+      background-color: transparent;
+      color:inherit;
     }
   }
   .add-to-day {
@@ -367,6 +394,31 @@ nav.topnav {
       padding-bottom: 10px;
       border-bottom: 1px solid #6e6e6e52;
     }
+    .due-date-picker {
+      @include date-picker();
+    }
+    .reminder-date-picker {
+      @include date-picker(); 
+    }
+    .repeat-selection {
+      width: 32%;
+      margin: auto;
+      border: none;
+      background: transparent;
+      border: 1px solid #3a6bff;
+      font-size: 15.5px;
+      color: inherit;
+      border-radius: 5px;
+      display: none;
+      outline:none;
+    }
+    .display-inline-block {
+      display: inline-block;
+    }
+    input:valid+span:after {
+      content: '✓';
+      padding-left: 5px;
+    }
   }
   textarea.note-card {
     font-size: 16.5px;
@@ -380,7 +432,7 @@ nav.topnav {
     outline: none;
     resize: none;
     &::placeholder {
-      font-family: 'Source Sans Pro', sans-serif;
+      font-family: inherit;
       font-size: 16.5px
     }
   }
@@ -406,6 +458,8 @@ nav.topnav {
       width: 10%;
       font-size: 18px;
       background-color: transparent;
+      color:$primary-blue;
+      border-radius: 50%;
       i {
         color: $primary-black;
       }
@@ -442,5 +496,8 @@ nav.topnav {
 
 .my-day {
   margin:auto;
+  display: none;
+}
+.show-day {
   display: inline;
 }

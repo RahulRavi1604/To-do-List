@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .m-t-0 {
   margin-top: 0px;
 }
@@ -349,6 +350,11 @@ p {
   margin: auto;
 }
 
+input[type=date]::-webkit-inner-spin-button, input[type=date]::-webkit-clear-button {
+  -webkit-appearance: none;
+  display: none;
+}
+
 nav.topnav {
   background-color: #1479d3e0;
   font-size: 20px;
@@ -383,11 +389,11 @@ nav.topnav li.topnav-center {
   background-color: #c7ddf5;
 }
 
-nav.topnav button.search-icon i {
+nav.topnav li.topnav-center button.search-icon i {
   font-size: 19px;
 }
 
-nav.topnav button.search-icon {
+nav.topnav li.topnav-center button.search-icon {
   border: none;
   height: 36px;
   width: 40px;
@@ -395,7 +401,7 @@ nav.topnav button.search-icon {
   background-color: transparent;
 }
 
-nav.topnav .search-input {
+nav.topnav li.topnav-center .search-input {
   border: none;
   height: 36px;
   background-color: transparent;
@@ -405,22 +411,22 @@ nav.topnav .search-input {
   color: #6b93ef;
 }
 
-nav.topnav .search-input::-webkit-input-placeholder {
+nav.topnav li.topnav-center .search-input::-webkit-input-placeholder {
   color: #6b93ef;
   font-size: 17px;
 }
 
-nav.topnav .search-input:-ms-input-placeholder {
+nav.topnav li.topnav-center .search-input:-ms-input-placeholder {
   color: #6b93ef;
   font-size: 17px;
 }
 
-nav.topnav .search-input::-ms-input-placeholder {
+nav.topnav li.topnav-center .search-input::-ms-input-placeholder {
   color: #6b93ef;
   font-size: 17px;
 }
 
-nav.topnav .search-input::placeholder {
+nav.topnav li.topnav-center .search-input::placeholder {
   color: #6b93ef;
   font-size: 17px;
 }
@@ -440,12 +446,13 @@ nav.topnav .search-input::placeholder {
   transition: width 0.4s;
   height: 100%;
   font-size: 18.5px;
+  overflow-y: auto;
 }
 
 .sidebar ul {
   list-style-type: none;
-  height: 94%;
   background-color: #eee;
+  height: 94%;
 }
 
 .sidebar ul a:link,
@@ -461,6 +468,7 @@ nav.topnav .search-input::placeholder {
   display: flex;
   width: 100%;
   height: 40px;
+  background-color: #eee;
 }
 
 .sidebar ul li i {
@@ -516,6 +524,12 @@ nav.topnav .search-input::placeholder {
   border: 1px solid #737373;
 }
 
+.sidebar ul li ul li:last-child {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 5px;
+}
+
 .sidebar ul li ul li:last-child p {
   margin: 0;
   margin-left: 25px;
@@ -553,7 +567,6 @@ nav.topnav .search-input::placeholder {
 .todo .heading .heading-left {
   display: inline-block;
   padding: 15px;
-  display: inline-block;
   font-size: 28px;
   color: #6b93ef;
   font-weight: bold;
@@ -680,7 +693,7 @@ nav.topnav .search-input::placeholder {
 .todo ul.tasks li:last-child {
   position: -webkit-sticky;
   position: sticky;
-  bottom: 0;
+  bottom: 5px;
   background: white;
 }
 
@@ -701,6 +714,10 @@ nav.topnav .search-input::placeholder {
   color: #737373;
   text-decoration: none;
   cursor: pointer;
+}
+
+.show-todo {
+  display: inline-block;
 }
 
 .task-description {
@@ -760,7 +777,7 @@ nav.topnav .search-input::placeholder {
   float: right;
 }
 
-.task-description .task-details .task-text {
+.task-description .task-details input.task-text {
   display: inline-block;
   font-weight: bold;
   min-width: 80%;
@@ -770,6 +787,10 @@ nav.topnav .search-input::placeholder {
   overflow: hidden;
   text-overflow: ellipsis;
   word-wrap: break-word;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
 }
 
 .task-description .add-to-day button {
@@ -801,6 +822,56 @@ nav.topnav .search-input::placeholder {
   border-bottom: 1px solid #6e6e6e52;
 }
 
+.task-description .settings .due-date-picker {
+  margin: auto;
+  height: 16px;
+  font-size: 13px;
+  display: none;
+  background-color: transparent;
+  border: 1px solid #3a6bff;
+  color: inherit;
+  text-align: center;
+  font-size: 15px;
+  border-radius: 5px;
+  outline: none;
+}
+
+.task-description .settings .reminder-date-picker {
+  margin: auto;
+  height: 16px;
+  font-size: 13px;
+  display: none;
+  background-color: transparent;
+  border: 1px solid #3a6bff;
+  color: inherit;
+  text-align: center;
+  font-size: 15px;
+  border-radius: 5px;
+  outline: none;
+}
+
+.task-description .settings .repeat-selection {
+  width: 32%;
+  margin: auto;
+  border: none;
+  background: transparent;
+  border: 1px solid #3a6bff;
+  font-size: 15.5px;
+  color: inherit;
+  border-radius: 5px;
+  display: none;
+  outline: none;
+}
+
+.task-description .settings .display-inline-block {
+  display: inline-block;
+}
+
+.task-description .settings input:valid + span:after {
+  content: '✓';
+  padding-left: 5px;
+}
+
 .task-description textarea.note-card {
   font-size: 16.5px;
   border: 1px solid #eee;
@@ -815,22 +886,22 @@ nav.topnav .search-input::placeholder {
 }
 
 .task-description textarea.note-card::-webkit-input-placeholder {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: inherit;
   font-size: 16.5px;
 }
 
 .task-description textarea.note-card:-ms-input-placeholder {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: inherit;
   font-size: 16.5px;
 }
 
 .task-description textarea.note-card::-ms-input-placeholder {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: inherit;
   font-size: 16.5px;
 }
 
 .task-description textarea.note-card::placeholder {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: inherit;
   font-size: 16.5px;
 }
 
@@ -862,6 +933,8 @@ nav.topnav .search-input::placeholder {
   width: 10%;
   font-size: 18px;
   background-color: transparent;
+  color: #6b93ef;
+  border-radius: 50%;
 }
 
 .task-description .bottom-settings button.delete-task i {
@@ -901,6 +974,10 @@ nav.topnav .search-input::placeholder {
 
 .my-day {
   margin: auto;
+  display: none;
+}
+
+.show-day {
   display: inline;
 }
 /*# sourceMappingURL=style.css.map */
