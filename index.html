@@ -102,23 +102,24 @@
           </button>
         </div>
         <div class="card settings">
-          <button class="add-reminder-date">
+          <div class="add-reminder-date">
             <i class="fa fa-clock-o"></i>
             <p class="m-l-20">Remind Me</p>
-            <input type="date" id="reminder-date-picker" class="reminder-date-picker" required/><span></span>
-          </button>
-          <button class="add-due-date">
+            <input type="date" id="reminder-date-picker" class="reminder-date-picker"/>
+          </div>
+          <div class="add-due-date">
             <i class="fa fa-calendar"></i>
             <p class="m-l-20">Add due date</p>
-            <input type="date" id="due-date-picker" class="due-date-picker" required/><span></span>
-          </button>
-          <button class="add-repeat">
+            <input type="date" id="due-date-picker" class="due-date-picker"/>
+          </div>
+          <div class="add-repeat">
             <i class="fa fa-repeat"></i>
             <p class="m-l-20">Repeat</p>
             <select class="repeat-selection"><option value="">None</option><option value="Daily">Daily</option><option value="Every Week">Every Week</option><option value="Every Month">Every Month</option><option value="Every Year">Every Year</option></select>
-          </button>
+          </div>
         </div>
-        <textarea class="note-card" placeholder="Add a note"></textarea>
+        <div class="letter-count">150 characters remaining</div>
+        <textarea class="note-card" placeholder="Add a note" maxlength="150"></textarea>
         <div class="bottom-settings">
           <button class="toggle-slider"><i class="fa fa-arrow-right"></i>
           </button>

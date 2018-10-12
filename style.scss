@@ -5,6 +5,7 @@ $primary-blue: #6b93ef;
 $search-background:#c7ddf5;
 $header-color:#fff;
 $sidebar-background:#eee;
+$delete-icon-color:#ff0000bd;
 $heading-padding:15px;
 .container {
   height: 97vh;
@@ -222,6 +223,7 @@ nav.topnav {
       i.delete-list-icon {
         cursor: pointer;
         margin-right:10px;
+        color:$delete-icon-color;
       }
       button {
         font-size: 18.5px;
@@ -347,6 +349,7 @@ nav.topnav {
       width: 10%;
       text-align: center;
       height: max-content;
+      cursor: pointer;
     }
     .fav {
       display: inline-block;
@@ -380,17 +383,20 @@ nav.topnav {
     }
   }
   .settings {
-    button {
+    i {
+      margin : auto 10px; 
+    }
+    & > div {
       font-size: 16px;
       width: 100%;
       text-align: left;
       height: 45px;
       display: inline-flex;
     }
-    button:not(:first-child) {
+    div:not(:first-child) {
       padding-top: 10px;
     }
-    button:not(:last-child) {
+    div:not(:last-child) {
       padding-bottom: 10px;
       border-bottom: 1px solid #6e6e6e52;
     }
@@ -415,17 +421,18 @@ nav.topnav {
     .display-inline-block {
       display: inline-block;
     }
-    input:valid+span:after {
-      content: '✓';
-      padding-left: 5px;
-    }
+  }
+  .letter-count {
+    float : right;
+    margin:auto 20px;
+
   }
   textarea.note-card {
     font-size: 16.5px;
     border: 1px solid #eee;
     margin: 10px;
-    width: 85%;
-    height: 10%;
+    width: 89%;
+    height: 15%;
     padding: 13px;
     color: $primary-black;
     background-color: #fff;
@@ -461,7 +468,7 @@ nav.topnav {
       color:$primary-blue;
       border-radius: 50%;
       i {
-        color: $primary-black;
+        color: $delete-icon-color;
       }
     }
   }
