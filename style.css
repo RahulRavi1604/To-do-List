@@ -652,6 +652,12 @@ nav.topnav li.topnav-center .search-input::placeholder {
   display: inline-block;
   width: 90%;
   margin-left: 45px;
+  max-height: 40px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-wrap: break-word;
+  white-space: nowrap;
+  word-break: break-all;
 }
 
 .todo ul.tasks li.task i.fa-check-circle-o + div {
@@ -667,7 +673,7 @@ nav.topnav li.topnav-center .search-input::placeholder {
   border: none;
   outline: none;
   width: 80%;
-  height: 100%;
+  height: 61px;
   margin-left: 45px;
   color: #737373;
 }
@@ -679,7 +685,7 @@ nav.topnav li.topnav-center .search-input::placeholder {
 
 .todo ul.tasks li.task .add-button {
   position: static;
-  margin: 0px 30px;
+  margin: 21px 30px;
   float: right;
   font-size: 17px;
   color: #6b93ef;
@@ -693,6 +699,7 @@ nav.topnav li.topnav-center .search-input::placeholder {
 .todo ul.tasks li:last-child {
   position: -webkit-sticky;
   position: sticky;
+  padding: 0;
   bottom: 5px;
   background: white;
 }
@@ -747,6 +754,7 @@ nav.topnav li.topnav-center .search-input::placeholder {
 
 .task-description .card i {
   font-size: 18px;
+  margin-right: 12px;
 }
 
 .task-description .task-details {
@@ -756,7 +764,7 @@ nav.topnav li.topnav-center .search-input::placeholder {
   display: flex;
 }
 
-.task-description .task-details i.fa-check-circle-o + div {
+.task-description .task-details i.fa-check-circle-o + textarea {
   text-decoration: line-through;
 }
 
@@ -778,16 +786,15 @@ nav.topnav li.topnav-center .search-input::placeholder {
   float: right;
 }
 
-.task-description .task-details input.task-text {
+.task-description .task-details .task-text {
   display: inline-block;
   font-weight: bold;
   min-width: 80%;
   margin-left: 5px;
   font-size: 21px;
-  max-height: 255px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
+  max-height: 155px;
+  overflow: auto;
+  resize: none;
   border: none;
   outline: none;
   background-color: transparent;

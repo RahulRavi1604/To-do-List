@@ -257,6 +257,12 @@ nav.topnav {
         display: inline-block;
         width: 90%;
         margin-left: 45px;
+        max-height: 40px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        word-wrap: break-word;
+        white-space: nowrap;
+        word-break: break-all;
       }
       i.fa-check-circle-o + div {
         text-decoration: line-through;
@@ -269,7 +275,7 @@ nav.topnav {
         border: none;
         outline: none;
         width: 80%;
-        height: 100%;
+        height: 61px;
         margin-left: 45px;
         color: #737373;
         &:placeholder {
@@ -279,7 +285,7 @@ nav.topnav {
       }
       .add-button {
         position: static;
-        margin: 0px 30px;
+        margin: 21px 30px;
         float: right;
         font-size: 17px;
         color: $primary-blue;
@@ -291,6 +297,7 @@ nav.topnav {
     }
     li:last-child {
       position: sticky;
+      padding:0;
       bottom: 5px;
       background: white;
     }
@@ -335,12 +342,13 @@ nav.topnav {
     background-color: #fff;
     i {
       font-size: 18px;
+      margin-right:12px;
     }
   }
   .task-details {
     margin-top: 10px;
     display: flex;
-    i.fa-check-circle-o + div {
+    i.fa-check-circle-o + textarea {
       text-decoration: line-through;
     }
     i {
@@ -357,16 +365,15 @@ nav.topnav {
       text-align: center;
       float: right;
     }
-    input.task-text {
+    .task-text {
       display: inline-block;
       font-weight: bold;
       min-width: 80%;
       margin-left: 5px;
       font-size: 21px;
-      max-height: 255px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      word-wrap: break-word;
+      max-height: 155px;
+      overflow: auto;
+      resize: none;
       border:none;
       outline:none;
       background-color: transparent;
